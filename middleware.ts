@@ -1,6 +1,9 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
 
-export default clerkMiddleware();
+export default clerkMiddleware((auth, req) => {
+  
+  // Add your middleware logic here if needed
+});
 
 export const config = {
   matcher: [
