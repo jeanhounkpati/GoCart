@@ -28,6 +28,7 @@ export async function PUT(request) {
 export async function GET(request) {
     try {
         const { userId } = getAuth(request);
+        await ensureUserExists(userId);
         if (!userId) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
