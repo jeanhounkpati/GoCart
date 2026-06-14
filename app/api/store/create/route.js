@@ -2,12 +2,14 @@ import { NextResponse } from 'next/server';
 import { getAuth } from '@clerk/nextjs/server';
 import prisma from '@/lib/prisma';
 import imagekit from '@/configs/imageKit';
+import { ensureUserExists } from '@/lib/syncClerkUser';
 
 //create the store
 
 export async function POST(request) {
     try {
         const { userId } = getAuth(request);
+        await ensureUserExists(userId);
         //Get the data from the form
         const formData = await request.formData();
         const name = formData.get("name");
@@ -81,6 +83,7 @@ export async function POST(request) {
 export async function GET(request) {
     try {
         const { userId } = getAuth(request);
+        await ensureUserExists(userId);
         const store = await prisma.store.findFirst({
             where: { userId: userId }
         });
