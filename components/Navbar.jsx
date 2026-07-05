@@ -3,6 +3,8 @@
 import { Package, Search, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { assets } from '@/assets/assets'
+import Image from 'next/image'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useUser, useClerk, UserButton } from '@clerk/nextjs'
@@ -25,19 +27,25 @@ const Navbar = () => {
     <nav className="relative bg-white">
       <div className="mx-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto py-4 transition-all">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="relative text-4xl font-semibold text-slate-700"
-          >
-            <span className="text-green-600">go</span>
-            cart
-            <span className="text-green-600 text-5xl leading-0">.</span>
+          <div className="flex items-center gap-2 shrink-0">
+            <Image
+              className="w-15 h-15 object-contain"
+              src={assets.ayogba_icon}
+              alt="Ayogba logo"
+            />
+            <Link
+              href="/"
+              className="relative text-4xl font-semibold text-slate-700 leading-none"
+            >
+            <span className="text-[#8B0000]">ay</span>
+            ogba
+            <span className="text-[#8B0000] text-5xl leading-0">.</span>
 
-            <p className="absolute text-xs font-semibold -top-1 -right-8 px-3 py-0.5 rounded-full flex items-center gap-2 text-white bg-green-500">
+            <p className="absolute text-xs font-semibold -top-1 -right-8 px-3 py-0.5 rounded-full flex items-center gap-2 text-white bg-[#8B0000]">
               plus
             </p>
-          </Link>
+            </Link>
+          </div>
 
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-slate-600">
